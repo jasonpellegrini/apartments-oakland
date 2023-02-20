@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+body {
+  width: 100%;
+}
+
+.card-list {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+#spotlight {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-align: left;
+  margin-left: 20px;
+}
