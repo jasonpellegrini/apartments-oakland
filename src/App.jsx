@@ -4,28 +4,37 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import data from './data'
 import Card from './components/Card'
+import Login from './components/Login'
+import LandingPage from './compound components/LandingPage'
+import Search from './components/Search'
+import Browse from './components/Browse'
+import Post from './components/Post'
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
-  const cards = data.map(item => {
-    return (
-      <Card
-          key={item.id}
-          item={item}
-      />
-    )
-  })
 
   return (
     <div className="App">
-      <Navbar />
-      <Hero />
-      <h1 id="spotlight">Spotlight:</h1>
-      <section className="card-list">
-        {cards}
-      </section>
-    </div>
+      <Routes>
+        <Route exact path="/" element={<Login />} />
+        <Route exact path="/home" element={<LandingPage />} />
+        <Route exact path="/search" element={<Search />} />
+        <Route exact path="/browse" element={<Browse />} />
+        <Route exact path="/post" element={<Post />} />
+      </Routes> 
+  </div>
   )
-}
+} 
+
+/*
+  <div className="App">
+      <Login />
+      <LandingPage />
+      <Search />
+      <Browse />
+      <Post />
+    </div>
+*/
 
 export default App
 

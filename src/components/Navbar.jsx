@@ -1,5 +1,6 @@
 import React from "react"
 import './navbar.css'
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
     return (
@@ -9,9 +10,15 @@ export default function Navbar() {
                 <h1 id="titleFirstHalf">apartments</h1><h1 id="titleSecondHalf">oakland</h1>
             </span>     
             <span id="navRight">
-                <h2>Search</h2>
-                <h2>Explore</h2>
-                <h2>Post</h2>
+                <h2 className="navButtons">
+                    <Link className="text-white" to={"/search"}>Search</Link>
+                </h2>
+                <h2 className="navButtons">
+                    <Link className="text-white" to={"/browse"}>Browse</Link>
+                </h2>
+                <h2 className="navButtons">
+                    <Link className="text-white" to={"/post"}>Post</Link>
+                </h2>
             </span>
         </nav>
     )
