@@ -11,6 +11,5 @@ app.use(cors());
 
 app.use("/auth", userRouter);
 
-mongoose.connect("mongodb+srv://jpellegrini1616:MERN@apartments-oakland-db.9rlokml.mongodb.net/apartments-oakland-dbretryWrites=true&w=majority");
-
+mongoose.connect("mongodb+srv://jpellegrini1616:MERN@apartments-oakland-db.9rlokml.mongodb.net/apartments-oakland-db?retryWrites=true&w=majority");
 app.listen(3001, () => console.log("server running"))
