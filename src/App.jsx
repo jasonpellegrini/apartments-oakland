@@ -15,9 +15,10 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <Routes>
-        <Route exact path="/" element={<Login />} />
-        <Route exact path="/home" element={<LandingPage />} />
+        <Route exact path="/auth" element={<Login />} />
+        <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/search" element={<Search />} />
         <Route exact path="/browse" element={<Browse />} />
         <Route exact path="/post" element={<Post />} />

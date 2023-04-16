@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.post("/register", async (req, res) => {
     const { username, password } = req.body;
+console.log("username r ", username)
+
     const user = await UserModel.findOne({ username });
 
     if (user) {
@@ -23,9 +25,15 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     const { username, password } = req.body;
+
+console.log("username", username)
+
     const user = await UserModel.findOne({ username });
 
+
+
     if (!user) {
+        console.log("user2", user)
         return res.json({ message: "user doesn't exist!" });
     }
 

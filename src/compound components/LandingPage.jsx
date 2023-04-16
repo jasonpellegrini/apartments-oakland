@@ -18,7 +18,6 @@ export default function LandingPage() {
     return (
 
         <div>
-            <Navbar />
             <Hero />
             <h1 id="spotlight">Spotlight:</h1>
             <section className="card-list">

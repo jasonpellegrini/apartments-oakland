@@ -1,8 +1,19 @@
 import React from "react"
 import './navbar.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 export default function Navbar() {
+
+    const [cookies, setCookies] = useCookies(["access_token"])
+    const navigate = useNavigate();
+
+    const logout = () => {
+        setCookies("access_token", "")
+        window.localStorage.removeItem("userID");
+        navigate("/auth");
+    }
+
     return (
         <nav>
             <span id="navLeft">
@@ -18,6 +29,9 @@ export default function Navbar() {
                 </h2>
                 <h2 className="navButtons">
                     <Link className="text-white" to={"/post"}>Post</Link>
+                </h2>
+                <h2 className="navButtons">
+                    {!cookies.access_token ? (<Link className="text-white" to={"/auth"}>Login/Register</Link>) : <button onClick={logout}>Logout</button>}
                 </h2>
             </span>
         </nav>
