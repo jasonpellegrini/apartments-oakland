@@ -1,12 +1,16 @@
-import React from "react"
-import { useState } from 'react'
+import React from "react";
+import { useState } from 'react';
+import axios from 'axios';
+import { useGetUserID } from "../hooks/useGetUserID";
 
 export default function Post() {
+    const userID = useGetUserID();
+
     const [apartment, setApartment] = useState({
-        name: "",
+        address: "",
         description: "",
         imageUrl: "",
-        userOwner: 0,
+        userOwner: userID,
     });
 
     const handleChange = (event) => {
@@ -14,16 +18,43 @@ export default function Post() {
         setApartment({...apartment, [name]: value});
     };
 
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        try{
+            console.log(apartment)
+            await axios.post("http://localhost:3001/apartments", apartment);
+            alert("post created");
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     return (
         <div className="create-recipe">
             <h2>Create a Post</h2>
-            <form>
-                <label htmlFor="name">Name</label>
-                <input type="text" id="name" onChange={handleChange}/>
+            <form onSubmit={onSubmit}>
+                <label htmlFor="address">Address</label>
+                <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    onChange={handleChange}
+                />
                 <label htmlFor="description" onChange={handleChange}>Description</label>
-                <textarea name="description" onChange={handleChange} rows="5" cols="20" id="description" />
-                <label for="imageUrl">Image URL</label>
-                <input type="text" id="imageUrl" onChange={handleChange} />
+                <textarea
+                    name="description"
+                    onChange={handleChange}
+                    rows="5" cols="20"
+                    id="description"
+                />
+                <label htmlFor="imageUrl">Image URL</label>
+                <input
+                    type="text"
+                    id="imageUrl"
+                    name="imageUrl"
+                    onChange={handleChange}
+                />
+                <button>Submit</button>
             </form>
            
         </div>
