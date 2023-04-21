@@ -13,6 +13,10 @@ const ApartmentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    rating: {
+        type: String,
+        required: true
+    },
     userOwner: { type: mongoose.Schema.Types.ObjectId, ref: "users", required: true },
 });
 

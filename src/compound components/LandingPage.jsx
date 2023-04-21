@@ -3,14 +3,34 @@ import Navbar from "../components/Navbar"
 import Hero from "../components/Hero"
 import data from "../data"
 import Card from "../components/Card"
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 export default function LandingPage() {
 
-        const cards = data.map(item => {
+        const [apartments, setApartments] = React.useState([]);
+
+        useEffect(() => {
+            const fetchApartment = async () => {
+                try{
+                    const response = await axios.get("http://localhost:3001/apartments");
+                    setApartments(response.data);
+                } catch (err) {
+                    console.error(err);
+                }
+            };
+
+            fetchApartment();
+
+        }, []);
+
+        const cards = apartments.map((apartment) => {
           return (
             <Card
-                key={item.id}
-                item={item}
+                key={apartment._id}
+                address={apartment.address}
+                imgUrl={apartment.imageUrl}
+                rating={apartment.rating}
             />
           )
         })

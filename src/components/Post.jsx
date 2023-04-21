@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from 'react';
 import axios from 'axios';
 import { useGetUserID } from "../hooks/useGetUserID";
+import { useNavigate } from "react-router-dom";
 
 export default function Post() {
     const userID = useGetUserID();
@@ -10,6 +11,7 @@ export default function Post() {
         address: "",
         description: "",
         imageUrl: "",
+        rating: 0,
         userOwner: userID,
     });
 
@@ -18,12 +20,14 @@ export default function Post() {
         setApartment({...apartment, [name]: value});
     };
 
+    const navigate = useNavigate();
+
     const onSubmit = async (event) => {
         event.preventDefault();
         try{
-            console.log(apartment)
             await axios.post("http://localhost:3001/apartments", apartment);
             alert("post created");
+            navigate("/");
         } catch (err) {
             console.error(err);
         }
@@ -46,6 +50,13 @@ export default function Post() {
                     onChange={handleChange}
                     rows="5" cols="20"
                     id="description"
+                />
+                <label htmlFor="rating">Rating</label>
+                <input
+                    type="number"
+                    id="rating"
+                    name="rating"
+                    onChange={handleChange}
                 />
                 <label htmlFor="imageUrl">Image URL</label>
                 <input
