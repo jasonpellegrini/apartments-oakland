@@ -25,23 +25,20 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/", async (req, res) => {
-    const apartment = await ApartmentsModel.findById(req.body.apartmentId)
-    const user = await UserModel.findById(req.body.userId);
-    const response = await apartment.save();
-    user.savedApartments.push(apartment);
-    await user.save();
-    res.json({ savedApartments: user.savedApartments });
+    const apartment = await ApartmentsModel.findById(req.body.id);
+    const user = await UserModel.findById(req.body.userID);
     try {
-        const response = await apartment.save();
-        res.json(response);
+        user.savedApartments.push(apartment);
+        await user.save();
+        res.status(201).json({ savedApartments: user.savedApartments });
     }catch (err) {
         res.json(err);
     }
 });
 
-router.get("/savedApartments/ids", async (req, res) => {
+router.get("/savedApartments/ids/:userID", async (req, res) => {
     try {
-        const user = await UserModel.findById(req.body.userId);
+        const user = await UserModel.findById(req.params.userID);
         res.json({ savedApartments: user?.savedApartments })
     }catch (err) {
         res.json(err);

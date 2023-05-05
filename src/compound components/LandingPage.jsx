@@ -5,10 +5,13 @@ import data from "../data"
 import Card from "../components/Card"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useGetUserID } from "../hooks/useGetUserID";
 
 export default function LandingPage() {
+        const userID = useGetUserID();
 
         const [apartments, setApartments] = React.useState([]);
+        const [savedApartments, setSavedApartments] = React.useState([]);
 
         useEffect(() => {
             const fetchApartment = async () => {
@@ -20,7 +23,21 @@ export default function LandingPage() {
                 }
             };
 
+            const fetchSavedApartment = async () => {
+                try{
+                    const response = await axios.get(
+                        `http://localhost:3001/apartments//savedApartments/ids/${userID}`,
+                        { userID }
+                    );
+                    setSavedApartments(response.data.savedApartments);
+                    console.log("data",response.data);
+                } catch (err) {
+                    console.error(err);
+                }
+            };
+
             fetchApartment();
+            fetchSavedApartment();
 
         }, []);
 
@@ -28,6 +45,7 @@ export default function LandingPage() {
           return (
             <Card
                 key={apartment._id}
+                id={apartment._id}
                 address={apartment.address}
                 imgUrl={apartment.imageUrl}
                 rating={apartment.rating}

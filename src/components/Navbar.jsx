@@ -22,7 +22,7 @@ export default function Navbar() {
             </span>     
             <span id="navRight">
                 <h2 className="navButtons">
-                    <Link className="text-white" to={"/search"}>Search</Link>
+                    <Link className="text-white" to={"/saved"}>Saved</Link>
                 </h2>
                 <h2 className="navButtons">
                     <Link className="text-white" to={"/browse"}>Browse</Link>
