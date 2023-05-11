@@ -37,8 +37,10 @@ export default function LandingPage() {
             };
 
             fetchApartment();
-
-            fetchSavedApartment();
+            
+            if (userID) {
+                fetchSavedApartment();
+            }
 
         }, []);
 
@@ -52,7 +54,7 @@ export default function LandingPage() {
                 address={apartment.address}
                 imgUrl={apartment.imageUrl}
                 rating={apartment.rating}
-                isSaved={isApartmentSaved(apartment._id)}
+                isSaved={userID ? isApartmentSaved(apartment._id) : false}
             />
           )
         });
