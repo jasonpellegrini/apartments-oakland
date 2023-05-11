@@ -7,7 +7,7 @@ export default function Card(props) {
     const id = props.id;
     const userID = useGetUserID();
 
-    const [savedApartments, setSavedApartments] = React.useState([]);
+    //const [savedApartments, setSavedApartments] = React.useState([]);
 
     const saveApartment = async (id) => {
         try{
@@ -21,7 +21,9 @@ export default function Card(props) {
     return(
         <div className="card">
             <img src={props.imgUrl} className="card--image" />
-            <button onClick={() => saveApartment(id)}> Save </button>
+            <button onClick={() => saveApartment(id)} disabled={props.isSaved}>
+                {props.isSaved ? "Saved" : "Save"}
+            </button>
             <p className="cardText">{props.address}</p>
             <p className="cardText">{props.rating} / 5.0</p>
         </div>  

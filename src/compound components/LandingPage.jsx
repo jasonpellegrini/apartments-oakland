@@ -37,9 +37,12 @@ export default function LandingPage() {
             };
 
             fetchApartment();
+
             fetchSavedApartment();
 
         }, []);
+
+        const isApartmentSaved = (id) => savedApartments.includes(id);
 
         const cards = apartments.map((apartment) => {
           return (
@@ -49,9 +52,10 @@ export default function LandingPage() {
                 address={apartment.address}
                 imgUrl={apartment.imageUrl}
                 rating={apartment.rating}
+                isSaved={isApartmentSaved(apartment._id)}
             />
           )
-        })
+        });
 
     return (
 
