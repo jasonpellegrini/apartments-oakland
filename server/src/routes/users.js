@@ -33,14 +33,13 @@ console.log("username", username)
 
 
     if (!user) {
-        console.log("user2", user)
-        return res.json({ message: "user doesn't exist!" });
+        return res.status(401).json({ message: "user doesn't exist!" });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-        return res.json({ message: "username or password is incorrect!" });
+        return res.status(401).json({ message: "username or password is incorrect!" });
     }
 
     const token = jwt.sign({ id: user._id }, "secret");

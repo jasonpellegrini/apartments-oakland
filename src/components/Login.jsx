@@ -34,6 +34,7 @@ const AuthLogin = () => {
             navigate("/");
         } catch (err){
             console.error(err);
+            alert("Username or password incorrect.")
         }
     }
 
