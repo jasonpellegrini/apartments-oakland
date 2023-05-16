@@ -43,8 +43,23 @@ export default function Saved() {
 
         const isApartmentSaved = (id) => savedApartments.includes(id);
 
-        const cards = savedApartments.map((apartment) => {
-          return (
+        const cards = apartments.map((apartment) => {
+            console.log("err",apartment)
+            if (isApartmentSaved(apartment._id)) {
+                return (
+                    <Card
+                        key={apartment._id}
+                        id={apartment._id}
+                        address={apartment.address}
+                        imgUrl={apartment.imageUrl}
+                        rating={apartment.rating}
+                        isSaved={userID ? isApartmentSaved(apartment._id) : false}
+                    />
+                )
+            } else {
+                console.log("no!")
+            }
+          /*return (
             <Card
                 key={apartment._id}
                 id={apartment._id}
@@ -53,7 +68,7 @@ export default function Saved() {
                 rating={apartment.rating}
                 isSaved={userID ? isApartmentSaved(apartment._id) : false}
             />
-          )
+          )*/
         });
 
     return (
