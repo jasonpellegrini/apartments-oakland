@@ -51,16 +51,16 @@ export default function Browse() {
 
     const handleMarkers = async () => {
         const newMarkers = [];
-      
+
         await Promise.all(
-          apartments.map(async (apartment) => {
-            const geo = await getCoordinates(apartment.address);
-            newMarkers.push({ position: geo });
-          })
+            apartments.map(async (apartment) => {
+                const geo = await getCoordinates(apartment.address);
+                newMarkers.push({ position: geo });
+            })
         );
-      
-        setMarkers(newMarkers);
-      };
+
+    setMarkers(newMarkers);
+};
 
     const getCoordinates = async (add) => {
         const address = add + " 15213";
@@ -75,9 +75,6 @@ export default function Browse() {
             return null;
         }
     }
-
-    
-
 
     return (
         <div>
