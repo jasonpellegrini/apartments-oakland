@@ -55,7 +55,7 @@ export default function Browse() {
         await Promise.all(
             apartments.map(async (apartment) => {
                 const geo = await getCoordinates(apartment.address);
-                newMarkers.push({ position: geo });
+                newMarkers.push({ position: geo, apartment });
             })
         );
 
@@ -91,12 +91,12 @@ export default function Browse() {
                 <Marker key={index} position={marker.position}>
                     <Popup>
                     <Card
-                        key={marker.id}
-                        id={marker.id}
-                        address={marker.address}
-                        imgUrl={marker.imageUrl}
-                        rating={marker.rating}
-                        isSaved={userID ? isApartmentSaved(marker.id) : false}
+                        key={marker.apartment.id}
+                        id={marker.apartment.id}
+                        address={marker.apartment.address}
+                        imgUrl={marker.apartment.imageUrl}
+                        rating={marker.apartment.rating}
+                        isSaved={userID ? isApartmentSaved(marker.apartment.id) : false}
                     />
                     </Popup>
                 
