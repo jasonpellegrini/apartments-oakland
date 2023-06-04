@@ -1,5 +1,5 @@
 import React from "react"
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import "leaflet/dist/leaflet.css"
 import './browse.css'
 import axios from 'axios';
@@ -76,6 +76,8 @@ export default function Browse() {
         }
     }
 
+    const isApartmentSaved = (id) => savedApartments.includes(id);
+
     return (
         <div>
             <button onClick={handleMarkers}>Button</button>
@@ -86,7 +88,19 @@ export default function Browse() {
                 />
 
             {markers.length > 0 && markers.map((marker, index) => (
-                <Marker key={index} position={marker.position}></Marker>
+                <Marker key={index} position={marker.position}>
+                    <Popup>
+                    <Card
+                        key={marker.id}
+                        id={marker.id}
+                        address={marker.address}
+                        imgUrl={marker.imageUrl}
+                        rating={marker.rating}
+                        isSaved={userID ? isApartmentSaved(marker.id) : false}
+                    />
+                    </Popup>
+                
+                </Marker>
             ))}
 
             </MapContainer>

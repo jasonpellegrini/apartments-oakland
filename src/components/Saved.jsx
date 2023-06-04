@@ -73,7 +73,7 @@ export default function Saved() {
 
     return (
         <div>
-            <h1>Your Saved Recipes:</h1>
+            <h1>Your Saved Apartments:</h1>
             <section className="card-list">
                 {cards}
             </section>  
