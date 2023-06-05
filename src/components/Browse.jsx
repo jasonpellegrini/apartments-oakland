@@ -66,7 +66,9 @@ export default function Browse() {
         const address = add + " 15213";
 
         try {
+            console.log("HELLO!")
             const url = `https://nominatim.openstreetmap.org/search?q=${address}&limit=2&format=json`;
+            console.log("url", url)
             const response = await axios.get(url);
             console.log("Coordinates response:", response.data);
             return([response.data[0].lat, response.data[0].lon])
