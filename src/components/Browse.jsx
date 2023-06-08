@@ -49,6 +49,10 @@ export default function Browse() {
 
     }, []);
 
+    useEffect(() => {
+        handleMarkers()
+    }, [apartments])
+
     const handleMarkers = async () => {
         const newMarkers = [];
 
@@ -82,8 +86,6 @@ export default function Browse() {
 
     return (
         <div>
-            <button onClick={handleMarkers}>Button</button>
-        
             <MapContainer center={[40.431988,-79.959838]} zoom={15}>
                 <TileLayer 
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

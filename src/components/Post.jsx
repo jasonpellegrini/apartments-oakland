@@ -24,6 +24,12 @@ export default function Post() {
 
     const onSubmit = async (event) => {
         event.preventDefault();
+
+        if(!userID) {
+            alert("Please sign in to post.")
+            return;
+        }
+
         try{
             await axios.post("http://localhost:3001/apartments", apartment);
             alert("post created");
