@@ -1,16 +1,15 @@
 import React from "react"
-import './card.css'
 import axios from 'axios'
 import { useGetUserID } from "../hooks/useGetUserID";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-export default function Card(props) {
-    const id = props.id;
+export default function View(props) {
     const userID = useGetUserID();
-    const navigate = useNavigate();
+    const location = useLocation();
+    const { id, address ,imgUrl, rating, isSaved: initial } = location.state;
 
     //const [savedApartments, setSavedApartments] = React.useState([]);
-    const [isSaved, setIsSaved] = React.useState(props.isSaved);
+    const [isSaved, setIsSaved] = React.useState(initial);
 
     const saveApartment = async (id) => {
         console.log(id)
@@ -29,23 +28,14 @@ export default function Card(props) {
         }
     }
 
-    const handleClick = () => {
-        navigate("/view", {
-            state: {
-                ...props,
-                isSaved: isSaved
-            }
-        });
-    }
-
     return(
         <div className="card">
-            <img src={props.imgUrl} onClick={handleClick} className="card--image" />
+            <img src={location.state.imgUrl} className="card--image" />
             <button onClick={() => saveApartment(id)} disabled={isSaved}>
                 {isSaved ? "Saved" : "Save"}
             </button>
-            <p className="cardText">{props.address}</p>
-            <p className="cardText">{props.rating} / 5.0</p>
+            <p className="cardText">{location.state.address}</p>
+            <p className="cardText">{location.state.rating} / 5.0</p>
         </div>  
     )
 }
