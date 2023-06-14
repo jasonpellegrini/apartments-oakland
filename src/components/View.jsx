@@ -2,11 +2,16 @@ import React from "react"
 import axios from 'axios'
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useLocation } from "react-router-dom";
+import { Form, Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import CommentBox from "./CommentBox";
 
 export default function View(props) {
     const userID = useGetUserID();
     const location = useLocation();
-    const { id, address ,imgUrl, rating, isSaved: initial } = location.state;
+    const { id, address ,imgUrl, rating, isSaved: initial, comments } = location.state;
+
+    const [comment, setComment] = useState('');
 
     //const [savedApartments, setSavedApartments] = React.useState([]);
     const [isSaved, setIsSaved] = React.useState(initial);
@@ -28,6 +33,26 @@ export default function View(props) {
         }
     }
 
+
+    const handleCommentChange = (event) => {
+        setComment(event.target.value);
+      };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Perform any necessary actions with the comment, e.g., send it to the server
+        console.log("hello!");
+      };
+
+    const commentList = location.state.comments.map((com) => {        
+        return (
+            <CommentBox 
+                text={com}
+            />
+        ) 
+         
+    })
+
     return(
         <div className="card">
             <img src={location.state.imgUrl} className="card--image" />
@@ -36,6 +61,25 @@ export default function View(props) {
             </button>
             <p className="cardText">{location.state.address}</p>
             <p className="cardText">{location.state.rating} / 5.0</p>
+
+            <div id="comment-box">
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="comment">
+                        <Form.Label>Leave a comment:</Form.Label>
+                        <Form.Control
+                            as="textarea"
+                            rows={3}
+                            value={comment}
+                            onChange={handleCommentChange}
+                            required
+                        />
+                    </Form.Group>
+                    <Button variant="primary" type="submit">Submit</Button>
+                </Form>
+            </div>
+            <div>
+                {commentList}
+            </div>
         </div>  
     )
 }

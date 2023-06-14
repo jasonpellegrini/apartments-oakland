@@ -17,6 +17,10 @@ const ApartmentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    comments: {
+        type: Array,
+        required: true
+    },
     userOwner: { type: mongoose.Schema.Types.ObjectId, ref: "users", required: true },
 });
 

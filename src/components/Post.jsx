@@ -13,6 +13,7 @@ export default function Post() {
         imageUrl: "",
         rating: 0,
         userOwner: userID,
+        comments: [],
     });
 
     const handleChange = (event) => {
