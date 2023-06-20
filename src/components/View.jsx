@@ -9,7 +9,7 @@ import CommentBox from "./CommentBox";
 export default function View(props) {
     const userID = useGetUserID();
     const location = useLocation();
-    const { id, address ,imgUrl, rating, isSaved: initial, comments } = location.state;
+    const { id, address ,imgUrl, rating, isSaved: initial, comments} = location.state;
 
     const [comment, setComment] = useState('');
 
@@ -40,6 +40,19 @@ export default function View(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        const updatedComments = [...location.state.comments, comment];
+
+        console.log("id",location.state.id)
+
+        axios.post('http://localhost:3001/apartments/update', {
+            _id: location.state.id,
+            comments: updatedComments
+        })
+        .then( response => {
+            console.log("made it to res")
+        } )
+
         // Perform any necessary actions with the comment, e.g., send it to the server
         console.log("hello!");
       };
@@ -47,6 +60,7 @@ export default function View(props) {
     const commentList = location.state.comments.map((com) => {        
         return (
             <CommentBox 
+                key={com}
                 text={com}
             />
         ) 
