@@ -12,6 +12,7 @@ export default function View(props) {
     const { id, address ,imgUrl, rating, isSaved: initial, comments} = location.state;
 
     const [comment, setComment] = useState('');
+    const [updatedComments, setUpdatedComments] = useState(location.state.comments);
 
     //const [savedApartments, setSavedApartments] = React.useState([]);
     const [isSaved, setIsSaved] = React.useState(initial);
@@ -38,29 +39,30 @@ export default function View(props) {
         setComment(event.target.value);
       };
 
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const updatedComments = [...location.state.comments, comment];
-
-        console.log("id",location.state.id)
+        const newComment = comment;
+        const updatedCommentsList = [...updatedComments, newComment];
 
         axios.post('http://localhost:3001/apartments/update', {
             _id: location.state.id,
-            comments: updatedComments
+            comments: updatedCommentsList
         })
         .then( response => {
-            console.log("made it to res")
+            setUpdatedComments(updatedCommentsList);
+            setComment('')
         } )
-
-        // Perform any necessary actions with the comment, e.g., send it to the server
-        console.log("hello!");
+        .catch(error => {
+            console.error(error);
+        });
       };
 
-    const commentList = location.state.comments.map((com) => {        
+    const commentList = updatedComments.map((com, index) => {        
         return (
             <CommentBox 
-                key={com}
+                key={index}
                 text={com}
             />
         ) 
