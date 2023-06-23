@@ -38,7 +38,7 @@ router.post("/update", async (req,res) => {
         if (!apartment) {
           return res.status(404).json({ error: "Apartment not found" });
         }
-
+        
         apartment.comments = req.body.comments || apartment.comments;
         const updatedApartment = await apartment.save();
         
