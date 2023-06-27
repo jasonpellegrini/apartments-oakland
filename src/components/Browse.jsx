@@ -86,6 +86,7 @@ export default function Browse() {
 
     return (
         <div>
+            <h5>Please allow a few moments for the data to load.</h5>
             <MapContainer center={[40.431988,-79.959838]} zoom={15}>
                 <TileLayer 
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -95,8 +96,8 @@ export default function Browse() {
                 <Marker key={index} position={marker.position}>
                     <Popup>
                     <Card
-                        key={marker.apartment.id}
-                        id={marker.apartment.id}
+                        key={marker.apartment._id}
+                        id={marker.apartment._id}
                         address={marker.apartment.address}
                         imgUrl={marker.apartment.imageUrl}
                         rating={marker.apartment.rating}

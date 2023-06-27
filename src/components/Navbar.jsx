@@ -18,15 +18,17 @@ export default function CustomNavbar() {
     <Navbar bg="primary" variant="dark" expand="lg">
       <Container fluid className="px-4">
         <Navbar.Brand>
-          <img
-            id="logo"
-            src="./src/assets/flats.png"
-            height="40px"
-            width="40px"
-            alt="Logo"
-          />
-          <span id="titleFirstHalf">apartments</span>
-          <span id="titleSecondHalf">oakland</span>
+          <Link to="/" className="nav-link">
+            <img
+              id="logo"
+              src="./src/assets/flats.png"
+              height="40px"
+              width="40px"
+              alt="Logo"
+            />
+            <span id="titleFirstHalf">apartments</span>
+            <span id="titleSecondHalf">oakland</span>
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
