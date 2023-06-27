@@ -1,15 +1,15 @@
-import React from "react"
-import axios from 'axios'
+import React, { useState } from "react";
+import axios from 'axios';
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useLocation } from "react-router-dom";
-import { Form, Button } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import { Container, Form, Button, Card, Row, Col } from 'react-bootstrap';
 import CommentBox from "./CommentBox";
+import './View.css';
 
 export default function View(props) {
   const userID = useGetUserID();
   const location = useLocation();
-  const { id, address, imgUrl, rating, isSaved: initial, comments } = location.state;
+  const { id, address, imgUrl, rating, description, isSaved: initial, comments } = location.state;
 
   const [comment, setComment] = useState('');
   const [updatedComments, setUpdatedComments] = useState(location.state.comments);
@@ -40,6 +40,11 @@ export default function View(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (!userID) {
+      alert("Please log in to leave a comment!")
+      return;
+    }
+
     const newComment = comment;
     const updatedCommentsList = [...updatedComments, newComment];
 
@@ -63,32 +68,49 @@ export default function View(props) {
     });
 
   return (
-    <div className="card">
-      <img src={location.state.imgUrl} className="card--image" />
-      <button onClick={() => saveApartment(id)} disabled={isSaved}>
-        {isSaved ? "Saved" : "Save"}
-      </button>
-      <p className="cardText">{location.state.address}</p>
-      <p className="cardText">{location.state.rating} / 5.0</p>
+    <Container fluid className="view-container">
+      <Card className="view-card">
+        <Row>
+          <Col md={4} className="left-column">
+            <Card.Img src={location.state.imgUrl} className="card--image" />
+            <Button onClick={() => saveApartment(id)} disabled={isSaved}>
+              {isSaved ? "Saved" : "Save"}
+            </Button>
+          </Col>
+          <Col md={8} className="right-column">
+            <Card.Body>
+              <Card.Title className="title-text">{location.state.address}</Card.Title>
+              <Card.Text className="rating-text">{location.state.rating} / 5.0</Card.Text>
+              <Card.Text className="description-text">{location.state.description}</Card.Text>
+            </Card.Body>
+          </Col>
+        </Row>
 
-      <div id="comment-box">
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="comment">
-            <Form.Label>Leave a comment:</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={3}
-              value={comment}
-              onChange={handleCommentChange}
-              required
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-      </div>
-      <div>{commentList}</div>
-    </div>
+        <Row>
+          <Col>
+            <div id="comment-box" className="comment-box">
+              <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="comment">
+                  <Form.Label>Leave a comment:</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    value={comment}
+                    onChange={handleCommentChange}
+                    required
+                  />
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </Form>
+            </div>
+            <div className="comment-container">
+              <div className="comment-list">{commentList}</div>
+            </div>
+          </Col>
+        </Row>
+      </Card>
+    </Container>
   );
 }

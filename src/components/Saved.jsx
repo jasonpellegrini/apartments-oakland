@@ -50,12 +50,13 @@ export default function Saved() {
             imgUrl={apartment.imageUrl}
             rating={apartment.rating}
             comments={apartment.comments}
-            isSaved={isApartmentSaved(apartment._id)} // Use the isApartmentSaved function directly
+            description={apartment.description}
+            isSaved={isApartmentSaved(apartment._id)} 
           />
         );
       } else {
         console.log("no!");
-        return null; // Return null when the apartment is not saved
+        return null;
       }
     });
   

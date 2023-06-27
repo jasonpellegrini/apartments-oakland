@@ -102,6 +102,7 @@ export default function Browse() {
                         imgUrl={marker.apartment.imageUrl}
                         rating={marker.apartment.rating}
                         comments={marker.apartment.comments}
+                        description={marker.apartment.description}
                         isSaved={userID ? isApartmentSaved(marker.apartment.id) : false}
                     />
                     </Popup>

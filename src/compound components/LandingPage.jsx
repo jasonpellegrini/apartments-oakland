@@ -55,6 +55,7 @@ export default function LandingPage() {
                 imgUrl={apartment.imageUrl}
                 rating={apartment.rating}
                 comments={apartment.comments}
+                description={apartment.description}
                 isSaved={userID ? isApartmentSaved(apartment._id) : false}
             />
           )

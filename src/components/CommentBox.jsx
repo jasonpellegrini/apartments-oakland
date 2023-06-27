@@ -3,7 +3,7 @@ import React from "react"
 export default function CommentBox(props) {
     return (
         <div>
-            <h3>Anonymous</h3>
+            <h5>Anonymous</h5>
             <p>{props.text}</p>
         </div>
     )
