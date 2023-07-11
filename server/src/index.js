@@ -7,7 +7,6 @@ import { userRouter } from './routes/users.js'
 import { apartmentsRouter } from './routes/apartments.js'
 
 dotenv.config({ path: '../server/src/.env' });
-console.log(process.env.DB_PASSWORD)
 
 const app = express();
 
