@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.post("/register", async (req, res) => {
     const { username, password } = req.body;
-console.log("username r ", username)
 
     const user = await UserModel.findOne({ username });
 
@@ -25,8 +24,6 @@ console.log("username r ", username)
 
 router.post("/login", async (req, res) => {
     const { username, password } = req.body;
-
-console.log("username", username)
 
     const user = await UserModel.findOne({ username });
 

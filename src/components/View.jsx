@@ -22,9 +22,7 @@ export default function View(props) {
           id,
           userID,
         });
-        console.log(response);
         setIsSaved(true);
-        console.log("is saved", isSaved);
       } else {
         alert("Please log in to save!");
       }

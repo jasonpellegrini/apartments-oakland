@@ -55,7 +55,6 @@ export default function Saved() {
           />
         );
       } else {
-        console.log("no!");
         return null;
       }
     });

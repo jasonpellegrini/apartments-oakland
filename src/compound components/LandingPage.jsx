@@ -1,7 +1,6 @@
 import React from "react"
 import Navbar from "../components/Navbar"
 import Hero from "../components/Hero"
-import data from "../data"
 import Card from "../components/Card"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -9,7 +8,6 @@ import { useGetUserID } from "../hooks/useGetUserID";
 
 export default function LandingPage() {
         const userID = useGetUserID();
-
         const [apartments, setApartments] = React.useState([]);
         const [savedApartments, setSavedApartments] = React.useState([]);
 
@@ -30,7 +28,6 @@ export default function LandingPage() {
                         { userID }
                     );
                     setSavedApartments(response.data.savedApartments);
-                    console.log("data",response.data);
                 } catch (err) {
                     console.error(err);
                 }

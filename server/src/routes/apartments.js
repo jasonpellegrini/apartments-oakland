@@ -25,14 +25,9 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/update", async (req,res) => {
-    //const apartment = await ApartmentsModel.findById(req.body._id);
     const id = req.body._id;
     let comm = req.body.comments;
     
-    //console.log("new id",req.body._id)
-   // console.log("comments",req.body.comments);
-    //console.log("apartment",apartment);
-
     try {
         const apartment = await ApartmentsModel.findById(req.body._id);
         if (!apartment) {
@@ -46,29 +41,6 @@ router.post("/update", async (req,res) => {
       } catch (err) {
         return res.status(500).json({ error: err.message });
       }
-    /*try {
-        apartment.comments = req.body.comments || apartment.comments;
-        const response = await apartment.save();
-        console.log("response", response);
-        res.json(response);
-    } catch (err) {
-        res.json(err)
-    }*/
-
-    /*try {
-
-        console.log(comments);
-        const response = await ApartmentsModel.updateOne(
-            { "_id": req.body._id},
-            { $set: { comments: req.body.comments } }
-          );
-          console.log("1234")
-        console.log("response", response);
-        res.json(response);
-        
-    } catch (err) {
-        res.json(err)
-    }*/
 });
 
 router.put("/", async (req, res) => {

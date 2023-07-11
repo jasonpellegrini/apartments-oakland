@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import data from './data'
 import Card from './components/Card'
 import Login from './components/Login'
 import LandingPage from './compound components/LandingPage'
@@ -28,16 +27,6 @@ function App() {
   </div>
   )
 } 
-
-/*
-  <div className="App">
-      <Login />
-      <LandingPage />
-      <Search />
-      <Browse />
-      <Post />
-    </div>
-*/
 
 export default App
 

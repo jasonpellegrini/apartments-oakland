@@ -9,17 +9,13 @@ export default function Card(props) {
     const userID = useGetUserID();
     const navigate = useNavigate();
 
-    //const [savedApartments, setSavedApartments] = React.useState([]);
     const [isSaved, setIsSaved] = React.useState(props.isSaved);
 
     const saveApartment = async (id) => {
-        console.log(id)
         try{
             if (userID) {
                 const response = await axios.put("http://localhost:3001/apartments", {id, userID});
-                console.log(response);
                 setIsSaved(true);
-                console.log("is saved", isSaved);
             } else {
                 alert("Please log in to save!")
             }
