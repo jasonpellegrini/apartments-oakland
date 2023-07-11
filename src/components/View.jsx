@@ -4,7 +4,7 @@ import { useGetUserID } from "../hooks/useGetUserID";
 import { useLocation } from "react-router-dom";
 import { Container, Form, Button, Card, Row, Col } from 'react-bootstrap';
 import CommentBox from "./CommentBox";
-import './View.css';
+import './view.css';
 
 export default function View(props) {
   const userID = useGetUserID();
