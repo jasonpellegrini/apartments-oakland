@@ -1,5 +1,5 @@
 import React from "react"
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, icon } from 'react-leaflet'
 import "leaflet/dist/leaflet.css"
 import './browse.css'
 import axios from 'axios';
@@ -7,9 +7,10 @@ import Card from "../components/Card"
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useState, useEffect } from 'react'
 import "../public/leaflet.css";
-import "../public/marker-icon.png";
-import "../public/marker-shadow.png";
 import L from 'leaflet';
+import "../leaflet.css";
+import markerIconUrl from "../marker-icon.png";
+import markerShadowUrl from "../marker-shadow.png";
 
 export default function Browse() {
 
@@ -85,11 +86,11 @@ export default function Browse() {
     const isApartmentSaved = (id) => savedApartments.includes(id);
 
     const markerIcon = L.icon({
-        iconUrl: 'marker-icon.png',
+        iconUrl: markerIconUrl,
         iconSize: [25, 41],
         iconAnchor: [12, 41],
         popupAnchor: [1, -34],
-        shadowUrl: 'marker-shadow.png',
+        shadowUrl: markerShadowUrl,
         shadowSize: [41, 41],
       });
 
