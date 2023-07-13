@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
 
 #hero {
-    background-image: url("./src/assets/oakland.jpg");
+    background-image: url("/oakland.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

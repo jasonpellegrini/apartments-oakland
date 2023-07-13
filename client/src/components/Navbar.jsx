@@ -21,7 +21,7 @@ export default function CustomNavbar() {
           <Link to="/" className="nav-link">
             <img
               id="logo"
-              src="./src/assets/flats.png"
+              src="/flats.png"
               height="40px"
               width="40px"
               alt="Logo"
