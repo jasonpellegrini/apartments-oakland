@@ -18,7 +18,7 @@ export default function View(props) {
   const saveApartment = async (id) => {
     try {
       if (userID) {
-        const response = await axios.put("http://localhost:3001/apartments", {
+        const response = await axios.put(`${import.meta.env.VITE_BASE_URL}/apartments`, {
           id,
           userID,
         });
@@ -47,7 +47,7 @@ export default function View(props) {
     const updatedCommentsList = [...updatedComments, newComment];
 
     axios
-      .post("http://localhost:3001/apartments/update", {
+      .post(`${import.meta.env.VITE_BASE_URL}/apartments/update`, {
         _id: location.state.id,
         comments: updatedCommentsList,
       })

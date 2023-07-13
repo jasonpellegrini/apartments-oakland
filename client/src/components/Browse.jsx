@@ -18,7 +18,7 @@ export default function Browse() {
     useEffect(() => {
         const fetchApartment = async () => {
             try{
-                const response = await axios.get("http://localhost:3001/apartments");
+                const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/apartments`);
                 setApartments(response.data);
             } catch (err) {
                 console.error(err);
@@ -28,7 +28,7 @@ export default function Browse() {
         const fetchSavedApartment = async () => {
             try{
                 const response = await axios.get(
-                    `http://localhost:3001/apartments//savedApartments/ids/${userID}`,
+                    `${import.meta.env.VITE_BASE_URL}/apartments//savedApartments/ids/${userID}`,
                     { userID }
                 );
                 setSavedApartments(response.data.savedApartments);

@@ -13,6 +13,7 @@ import { Route, Routes } from 'react-router-dom'
 
 function App() {
 
+  console.log(import.meta.env);
   return (
     <div className="App">
       <Navbar />

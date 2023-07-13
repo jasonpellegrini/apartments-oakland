@@ -14,7 +14,7 @@ export default function Card(props) {
     const saveApartment = async (id) => {
         try{
             if (userID) {
-                const response = await axios.put("http://localhost:3001/apartments", {id, userID});
+                const response = await axios.put(`${import.meta.env.VITE_BASE_URL}/apartments`, {id, userID});
                 setIsSaved(true);
             } else {
                 alert("Please log in to save!")

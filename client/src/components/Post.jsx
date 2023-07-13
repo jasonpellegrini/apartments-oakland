@@ -33,7 +33,7 @@ export default function Post() {
     }
 
     try {
-      await axios.post("http://localhost:3001/apartments", apartment);
+      await axios.post(`${import.meta.env.VITE_BASE_URL}/apartments`, apartment);
       alert("post created");
       navigate("/");
     } catch (err) {

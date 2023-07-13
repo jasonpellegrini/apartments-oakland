@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useCookies} from 'react-cookie';
 
 export default function Login() {
+
     return (
         <div>
             <AuthLogin />
@@ -24,7 +25,7 @@ const AuthLogin = () => {
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post("http://localhost:3001/auth/login", {
+            const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/login`, {
                 username,
                 password
             });
@@ -56,7 +57,7 @@ const AuthRegister = () => {
         event.preventDefault();
 
         try {
-            await axios.post("http://localhost:3001/auth/register", {
+            await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/register`, {
                 username,
                 password
             });

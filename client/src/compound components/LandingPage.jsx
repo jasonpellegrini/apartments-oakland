@@ -10,11 +10,14 @@ export default function LandingPage() {
         const userID = useGetUserID();
         const [apartments, setApartments] = React.useState([]);
         const [savedApartments, setSavedApartments] = React.useState([]);
+        const url = import.meta.env.VITE_BASE_URL;
+
+        console.log("url", url);
 
         useEffect(() => {
             const fetchApartment = async () => {
                 try{
-                    const response = await axios.get("http://localhost:3001/apartments");
+                    const response = await axios.get(`${url}/apartments`);
                     setApartments(response.data);
                 } catch (err) {
                     console.error(err);
@@ -24,7 +27,7 @@ export default function LandingPage() {
             const fetchSavedApartment = async () => {
                 try{
                     const response = await axios.get(
-                        `http://localhost:3001/apartments//savedApartments/ids/${userID}`,
+                        `${url}/apartments//savedApartments/ids/${userID}`,
                         { userID }
                     );
                     setSavedApartments(response.data.savedApartments);
