@@ -6,6 +6,10 @@ import axios from 'axios';
 import Card from "../components/Card"
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useState, useEffect } from 'react'
+import "../public/leaflet.css";
+import "../public/marker-icon.png";
+import "../public/marker-shadow.png";
+import L from 'leaflet';
 
 export default function Browse() {
 
@@ -80,6 +84,15 @@ export default function Browse() {
 
     const isApartmentSaved = (id) => savedApartments.includes(id);
 
+    const markerIcon = L.icon({
+        iconUrl: 'marker-icon.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowUrl: 'marker-shadow.png',
+        shadowSize: [41, 41],
+      });
+
     return (
         <div>
             <h5>Please allow a few moments for the data to load.</h5>
@@ -89,7 +102,7 @@ export default function Browse() {
                 />
 
             {markers.length > 0 && markers.map((marker, index) => (
-                <Marker key={index} position={marker.position}>
+                <Marker key={index} position={marker.position} icon={markerIcon}>
                     <Popup>
                     <Card
                         key={marker.apartment._id}
