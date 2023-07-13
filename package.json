@@ -1,0 +1,23 @@
+{
+  "name": "apartments-oakland-dir",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-server": "cd server && npm install",
+    "start-server": "cd server && node index.js",
+    "build-client": "cd client && npm run build",
+    "start-client": "cd client && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonpellegrini/apartments-oakland-dir.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonpellegrini/apartments-oakland-dir/issues"
+  },
+  "homepage": "https://github.com/jasonpellegrini/apartments-oakland-dir#readme"
+}
