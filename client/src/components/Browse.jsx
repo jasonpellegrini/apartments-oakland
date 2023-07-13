@@ -6,11 +6,6 @@ import axios from 'axios';
 import Card from "../components/Card"
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useState, useEffect } from 'react'
-import "../public/leaflet.css";
-import L from 'leaflet';
-import "../leaflet.css";
-import markerIconUrl from "../marker-icon.png";
-import markerShadowUrl from "../marker-shadow.png";
 
 export default function Browse() {
 
